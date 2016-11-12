@@ -19,36 +19,39 @@ function calculatorModule(){
    * @param  { Number } x
    * @return { Number }    current total
    */
-  calculator.load= function(x){
+  function load (x){
+    validation(x);
     _total = x;
     return _total;
-  };
+  }
   /**
    * Return the value of `total`
    * @return { Number }
    */
 
-   calculator.getTotal = function (x){
+    function getTotal (x){
     return _total;
-   };
+   }
 
   /**
    * Sums the value passed in with `total`
    * @param { Number } x
    */
 
-   calculator.add = function(x){
+   function add (x){
+    validation(x);
     _total = _total + x;
-  };
+  }
 
   /**
    * Subtracts the value passed in from `total`
    * @param  { Number } x
    */
 
-   calculator.subtract = function (x){
+   function subtract  (x){
+    validation(x);
     _total = _total - x;
-   };
+   }
 
 
   /**
@@ -56,9 +59,10 @@ function calculatorModule(){
    * @param  { Number } x
    */
 
-   calculator.multiply = function (x){
+   function multiply (x){
+    validation(x);
     _total = _total * x;
-   };
+   }
 
 
   /**
@@ -66,46 +70,56 @@ function calculatorModule(){
    * @param  { Number } x
    */
 
-   calculator.divide = function (x){
+   function divide (x){
+    validation(x);
     _total = _total / x;
-   };
+   }
 
   /**
    * Return the value stored at `memory`
    * @return { Number }
    */
 
-   calculator.recallMemory = function(x){
+   function recallMemory (x){
     return _memory;
-   };
+   }
 
   /**
    * Stores the value of `total` to `memory`
    */
 
-   calculator.saveMemory = function (x){
+   function saveMemory (x){
     _memory = _total;
-   };
+   }
 
   /**
    * Clear the value stored at `memory`
    */
 
-   calculator.clearMemory = function (x){
+   function clearMemory (x){
     _memory = 0;
-   };
+   }
 
   /**
    * Validation
    */
 
-  calculator.load = function(x){
-    if( x === "number"){
-      return throw error;
+  function validation(x){
+    if (typeof x !== "number"){
+      throw error;
     }
-
   }
 
 
-   return calculator;
+   return {
+    load: load,
+    getTotal: getTotal,
+    add: add,
+    subtract: subtract,
+    multiply: multiply,
+    divide: divide,
+    recallMemory: recallMemory,
+    saveMemory:  saveMemory,
+    clearMemory: clearMemory
+  };
 }
